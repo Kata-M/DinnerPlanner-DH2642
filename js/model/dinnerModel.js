@@ -1,26 +1,39 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
  
+ 	console.log("Hello Javascript KATA");
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
 
+	var numberOfGuests; //type int
+	var selectedDishes; //type array
 
 	this.setNumberOfGuests = function(num) {
 		//TODO Lab 1
+		numberOfGuests = num;
+		
 	}
 	
 	this.getNumberOfGuests = function() {
 		//TODO Lab 1
+		return numberOfGuests;
+
 	}
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
 		//TODO Lab 1
+		return getAllDishes(type);
+
 	}
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
 		//TODO Lab 1
+		var allDishes = new Array(dishes.length);
+		console.log("Hello Javascript KATA");
+	
+
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
