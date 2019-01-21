@@ -53,6 +53,15 @@ var ExampleView = function (container, model) {
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
 	numberOfGuests.html("Hello World");
+
+	/**
+	 * Here we use @var {jQuery object} fetchIngredients that is a reference to <span>
+	 * in our view to dynamically set it's value to "Hello World".
+	 */
+	var fetchIngredients = container.find("#fetchIngredients");	
+	fetchIngredients.html("Hello World");	
+
+
 	
 }
  
