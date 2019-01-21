@@ -10,12 +10,14 @@ var DinnerModel = function() {
 
 	this.setNumberOfGuests = function(num) {
 		//TODO Lab 1
+		console.log("set number of guests to: ", num);
 		numberOfGuests = num;
 		
 	}
 	
 	this.getNumberOfGuests = function() {
 		//TODO Lab 1
+		console.log("get number of guests: ");
 		return numberOfGuests;
 
 	}
@@ -23,15 +25,16 @@ var DinnerModel = function() {
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
 		//TODO Lab 1
-		return getAllDishes(type);
+		console.log("getSelectedDish : " ,type);
+		console.log(this.getAllDishes(type));
 
+		return this.getAllDishes(type);
 	}
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
 		//TODO Lab 1
-		var allDishes = new Array(dishes.length);
-		console.log("Hello Javascript KATA");
+		return dishes; 
 	
 
 	}
