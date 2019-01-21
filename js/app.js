@@ -1,9 +1,10 @@
 $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
+	var container = $("#exampleView");
 	
 	// And create the instance of ExampleView
-	var exampleView = new ExampleView($("#exampleView"));
+	var exampleView = new ExampleView(container,model);
 
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
