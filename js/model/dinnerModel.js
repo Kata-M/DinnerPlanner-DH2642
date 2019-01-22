@@ -6,17 +6,17 @@ var DinnerModel = function() {
 	// and selected dishes for the dinner menu
 
 	var numberOfGuests; //type int
-	var selectedDishes; //type array
+	var menu = []; //type array/queue
 
 	this.setNumberOfGuests = function(num) {
-		//TODO Lab 1
+		//DONE Lab 1
 		console.log("set number of guests to: ", num);
 		numberOfGuests = num;
 		
 	}
 	
 	this.getNumberOfGuests = function() {
-		//TODO Lab 1
+		//DONE Lab 1
 		console.log("get number of guests: ");
 		return numberOfGuests;
 
@@ -24,7 +24,7 @@ var DinnerModel = function() {
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
-		//TODO Lab 1
+		//DONE Lab 1
 		console.log("getSelectedDish : " ,type);
 		console.log(this.getAllDishes(type));
 
@@ -33,31 +33,123 @@ var DinnerModel = function() {
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		//TODO Lab 1
+		//DONE Lab 1
+		console.log(dishes);
 		return dishes; 
-	
 
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
-		//TODO Lab 1
+		//DONE Lab 1		
+		var returnIngredients = new Array(dishes.length);
+
+		for(key in dishes){
+			console.log("ingredients for item [", key, "]  ", dishes[key].ingredients);
+			returnIngredients[key] = dishes[key].ingredients;
+
+		}
+		console.log(" returnIngredients : ", returnIngredients)
+    	return returnIngredients;
 	}
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
-		//TODO Lab 1
+		//DONE Lab 1
+		var totalPrice = 0;
+		dishes.forEach(function(dish)
+		{
+		
+			dish.ingredients.forEach(function(ingredient) {
+					 totalPrice += ingredient.price;
+			});
+		});
+		return totalPrice*this.getNumberOfGuests();
+
 	}
+		
+
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		//TODO Lab 1 
+		//DONE Lab 1 
+		var counter = 0;
+		console.log(id);
+		var alreadyInMenu = false;
+
+		// if menu empty or does not exist, put new element in
+		if (menu === undefined || menu.length == 0) {
+
+			menu[0] = this.getDish(id);
+
+		//if items already in the menu
+		}else{ 
+
+			menu.forEach(function(menuDish)
+			{
+			
+				if(menuDish.id == id){
+					alreadyInMenu = true;
+					//break;
+				}
+				counter++;
+			});
+
+			if(alreadyInMenu == true){
+			//remove the excisting dish and add it again
+					this.removeDishFromMenu(id);
+					menu.push(this.getDish(id));
+
+			}else{
+			//add new dish to the end of the menu array
+					menu[counter] = this.getDish(id);
+			}
+		}
 	}
+
+	//function for testing that menu operations work
+	this.printMenu = function(){
+
+		if(menu.length == 0){
+			alert("Menu is empty!");
+		}
+		menu.forEach(function(menuDish){
+			console.log("menuDish : ", menuDish);
+		});
+
+	}
+
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
 		//TODO Lab 1
+		var counter = 0;
+		var idFound = false;
+
+		if(menu.length == 1){
+			if(menu[counter].id == id){
+				menu.splice(counter, 1); 
+			}else{
+				alert("The dish you tried to remove does not excist on the menu!");
+			}
+		}else{
+
+			menu.forEach(function(menuDish)
+				{
+					if(menuDish.id == id){
+						//remove the excisting dish 
+						menu.splice(counter, 1); 
+						idFound = true;
+					}
+					counter++;
+				});
+
+				if(idFound == false){
+					alert("The dish you tried to remove does not excist on the menu!");
+				}
+
+		}
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
@@ -81,6 +173,8 @@ var DinnerModel = function() {
 	  	return dish.type == type && found;
 	  });	
 	}
+
+
 
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
