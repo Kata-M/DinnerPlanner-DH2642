@@ -37,6 +37,7 @@
           padding-left: 0 !important;
           padding-right: 0 !important;
       }
+
   </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -69,16 +70,36 @@
   <nav class="navbar navbar-default"> 
       <div class="container-fluid"> 
           <div class="navbar-header"> 
+
+
+    
+
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true"> 
                   <span class="sr-only">Toggle navigation</span> 
                   <span class="icon-bar"></span> 
                   <span class="icon-bar"></span> 
                   <span class="icon-bar"></span> 
-                  </button> <a href="#" class="navbar-brand">My Dinner</a> 
+              </button> 
+
+           
+
+              <a href="#" class="navbar-brand">My Dinner </a> 
+              
+              <!--
+              <div class="col-xs-2 col-sm-2 col-md-2">
+                <p align="right" style="color: maroon"> SEK </p>
+            </div>
+            <div class="col-xs-2 col-sm-4 col-md-4">
+                totalPrice<span id="totalPrice"></span>
+            </div>
+            -->
+             
    
           </div> 
                 
 
+
+        
           <div class="row">
                 
           </div>
@@ -128,6 +149,15 @@
       </div>
 
       <div class="row">
+            
+            <div class="list-group">
+              <a href="#" class="list-group-item" align="left"> Lasagna &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   dishPrice<span id="dishPrice"></span> </a>
+
+              <a href="#" class="list-group-item" align="left"> Ice Cream &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; dishPrice<span id="dishPrice"></span>  </a>
+            </div>
+      </div>
+
+      <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6">
             
             </div>
@@ -141,7 +171,7 @@
 
       <div class="row">
             <br />
-            <button type="submit" class="btn btn-default" style="background: lightgray">Confirm Dinner</button> 
+            <button type="submit" class="btn btn-default" style="background: orange">Confirm Dinner</button> 
             <br />
       </div>
 
