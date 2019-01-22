@@ -49,7 +49,7 @@ var DinnerModel = function() {
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
-	this.getAllIngredients = function() {
+	/*this.getAllIngredients = function() {
 		//DONE Lab 1		
 		var returnIngredients = new Array();
 
@@ -60,6 +60,16 @@ var DinnerModel = function() {
 		}
 		//console.log(" returnIngredients : ", returnIngredients)
     	return returnIngredients;
+	}*/
+	//Returns all ingredients for all the dishes on the menu.
+	this.getAllIngredients = function() {
+		//TODO Lab 1
+		dishes.foreach(function(dish)
+		{
+			dish.ingredients.forEach(function(ingredient) {
+					return ingredient.name;
+			});
+		});
 	}
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
