@@ -17,7 +17,7 @@ var DinnerModel = function() {
 	
 	this.getNumberOfGuests = function() {
 		//DONE Lab 1
-		console.log("get number of guests: ");
+		console.log("get number of guests ");
 		return numberOfGuests;
 
 	}
@@ -25,31 +25,40 @@ var DinnerModel = function() {
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
 		//DONE Lab 1
-		console.log("getSelectedDish : " ,type);
-		console.log(this.getAllDishes(type));
+		var selectedDish;
+		var found = false;
+		menu.forEach(function(menuDish)
+		{
 
-		return this.getAllDishes(type);
+			if(menuDish.type == type){
+				selectedDish = menuDish;
+				found = true;
+			}
+		});
+			if(!found){
+				alert("This type dish does not exist on the menu!");
+			}
+			return selectedDish;
 	}
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
 		//DONE Lab 1
-		console.log(dishes);
-		return dishes; 
+		return menu; 
 
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
 		//DONE Lab 1		
-		var returnIngredients = new Array(dishes.length);
+		var returnIngredients = new Array();
 
-		for(key in dishes){
-			console.log("ingredients for item [", key, "]  ", dishes[key].ingredients);
-			returnIngredients[key] = dishes[key].ingredients;
+		for(key in menu){
+			//console.log("ingredients for item [", key, "]  ", dishes[key].ingredients);
+			returnIngredients[key] = menu[key].ingredients;
 
 		}
-		console.log(" returnIngredients : ", returnIngredients)
+		//console.log(" returnIngredients : ", returnIngredients)
     	return returnIngredients;
 	}
 
@@ -57,10 +66,10 @@ var DinnerModel = function() {
 	this.getTotalMenuPrice = function() {
 		//DONE Lab 1
 		var totalPrice = 0;
-		dishes.forEach(function(dish)
+		menu.forEach(function(menuDish)
 		{
 		
-			dish.ingredients.forEach(function(ingredient) {
+			menuDish.ingredients.forEach(function(ingredient) {
 					 totalPrice += ingredient.price;
 			});
 		});
@@ -146,7 +155,7 @@ var DinnerModel = function() {
 				});
 
 				if(idFound == false){
-					alert("The dish you tried to remove does not excist on the menu!");
+					alert("The dish you tried to remove does not exist on the menu!");
 				}
 
 		}
