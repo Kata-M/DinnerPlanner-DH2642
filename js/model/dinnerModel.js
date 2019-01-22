@@ -5,8 +5,9 @@ var DinnerModel = function() {
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
 
-	var numberOfGuests; //type int
+	var numberOfGuests = 4; //type int
 	var menu = []; //type array/queue
+	var allTypes = [];
 
 	this.setNumberOfGuests = function(num) {
 		//DONE Lab 1
@@ -64,18 +65,51 @@ var DinnerModel = function() {
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
 		//TODO Lab 1
-		dishes.foreach(function(dish)
+		var returnIngredients = new Array();
+		dishes.forEach(function(dish)
 		{
 			dish.ingredients.forEach(function(ingredient) {
-					return ingredient.name;
+					returnIngredients.push(ingredient);
 			});
 		});
+
+		return returnIngredients;
+	}
+
+	this.getAllTypes = function() {
+		//TODO Lab 1
+		var allTypes = new Array();
+		var foundSame = false;
+		var n = 0;
+			
+		while(n<10){
+			foundSame = false;
+			for(var i = 0; i<dishes.length; i++){
+				
+				if(dishes[n].type == allTypes[i]){
+					foundSame = true;
+					console.log("Found Same");
+				}else{
+					foundSame = false;
+					console.log("NOT Found Same");
+				}
+			}
+			if(foundSame==false){
+				allTypes.push(dishes[n].type);
+			}
+			n++;
+		}
+
+			
+
+		return allTypes;
+		
 	}
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
 		//DONE Lab 1
-		var totalPrice = 0;
+		/*var totalPrice = 0;
 		menu.forEach(function(menuDish)
 		{
 		
@@ -84,7 +118,16 @@ var DinnerModel = function() {
 			});
 		});
 		return totalPrice*this.getNumberOfGuests();
-
+		*/
+		var totalPrice = 0;
+		dishes.forEach(function(dish)
+		{
+		
+			dish.ingredients.forEach(function(ingredient) {
+					 totalPrice += ingredient.price;
+			});
+		});
+		return totalPrice*this.getNumberOfGuests();
 	}
 		
 
