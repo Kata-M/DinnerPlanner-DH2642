@@ -82,25 +82,20 @@ var DinnerModel = function() {
 		var foundSame = false;
 		var n = 0;
 			
-		while(n<10){
+		
 			foundSame = false;
 			for(var i = 0; i<dishes.length; i++){
 				
-				if(dishes[n].type == allTypes[i]){
-					foundSame = true;
-					console.log("Found Same");
+
+				foundSame = allTypes.includes(dishes[i].type);
+				if(foundSame){
+				
 				}else{
-					foundSame = false;
-					console.log("NOT Found Same");
+			
+					allTypes.push(dishes[i].type);
 				}
 			}
-			if(foundSame==false){
-				allTypes.push(dishes[n].type);
-			}
-			n++;
-		}
-
-			
+						
 
 		return allTypes;
 		
@@ -259,7 +254,7 @@ var DinnerModel = function() {
 	var dishes = [{
 		'id':1,
 		'name':'French toast',
-		'type':'starter',
+		'type':'appetizer',
 		'image':'toast.jpg',
 		'description':"In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg; stir well to combine. Soak bread slices in the egg mixture until saturated. Heat a lightly oiled griddle or frying pan over medium high heat. Brown slices on both sides, sprinkle with cinnamon and serve hot.",
 		'ingredients':[{ 

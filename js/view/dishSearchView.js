@@ -77,6 +77,23 @@ var ExampleView = function (container, model) {
 	document.getElementById("total_price").innerHTML = total;
 
 
+	/*
+	Search Types
+	*/
+
+	var types = model.getAllTypes();
+	//totalPrice.append($(total));
+	console.log("types : ",types);
+	var n = 0;
+	types.forEach(function(type)
+		{
+			document.getElementById("type"+n).innerHTML = type;
+			n++;
+
+		});
+
+
+
 	/**
 	 * Here we use @var {jQuery object} fetchIngredients that is a reference to <span>
 	 * in our view to dynamically set it's value to "Hello World".
