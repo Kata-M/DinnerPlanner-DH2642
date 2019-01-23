@@ -6,6 +6,11 @@ $(function() {
 	// And create the instance of ExampleView
 	var exampleView = new ExampleView(container,model);
 
+
+    //dishesCardView
+	var dishesContainer = $("#dishesCardView");
+	// And create the instance of dishesCardView
+	var dishesCardView = new DishesCardView(dishesContainer,model);
 	/**
 	 * IMPORTANT: app.js is the only place where you are allowed to
 	 * use the $('someSelector') to search for elements in the whole HTML.

@@ -1,106 +1,65 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
  
- 	console.log("Hello Javascript KATA");
+ 	console.log("Hello Javascript LAB1");
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
 
 	var numberOfGuests = 4; //type int
-	var menu = []; //type array/queue
-	var allTypes = [];
+	var selectedDishes; //type array
 
 	this.setNumberOfGuests = function(num) {
-		//DONE Lab 1
-		console.log("set number of guests to: ", num);
+		//TODO Lab 1
+		console.log("set number of guests to: "+num);
 		numberOfGuests = num;
 		
 	}
 	
 	this.getNumberOfGuests = function() {
-		//DONE Lab 1
-		console.log("get number of guests ");
+		//TODO Lab 1
+		console.log("get number of guests: "+numberOfGuests);
 		return numberOfGuests;
 
 	}
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
-		//DONE Lab 1
-		var selectedDish;
-		var found = false;
-		menu.forEach(function(menuDish)
-		{
+		//TODO Lab 1
+		console.log("get Dishes of : "+type);
 
-			if(menuDish.type == type){
-				selectedDish = menuDish;
-				found = true;
-			}
-		});
-			if(!found){
-				alert("This type dish does not exist on the menu!");
-			}
-			return selectedDish;
+		return this.getAllDishes(type);
 	}
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		//DONE Lab 1
-		return menu; 
+		//TODO Lab 1
 
+		return dishes;
 	}
 
-
-
-	//Returns all ingredients for all the dishes on the menu.
-	/*this.getAllIngredients = function() {
-		//DONE Lab 1		
-		var returnIngredients = new Array();
-
-		for(key in menu){
-			//console.log("ingredients for item [", key, "]  ", dishes[key].ingredients);
-			returnIngredients[key] = menu[key].ingredients;
-
-		}
-		//console.log(" returnIngredients : ", returnIngredients)
-    	return returnIngredients;
-	}*/
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
 		//TODO Lab 1
 		var returnIngredients = new Array();
-		dishes.forEach(function(dish)
-		{
-			dish.ingredients.forEach(function(ingredient) {
-					returnIngredients.push(ingredient);
-			});
-		});
 
+		dishes.forEach(function(dish) {
+			dish.ingredients.forEach(function(ingredient){
+				returnIngredients.push(ingredient);
+			});			
+		});
+		console.log(returnIngredients);
 		return returnIngredients;
 	}
 
 	this.getAllTypes = function() {
 		//TODO Lab 1
 		var allTypes = new Array();
-		var foundSame = false;
-		var n = 0;
-			
-		
-			foundSame = false;
-			for(var i = 0; i<dishes.length; i++){
-				
-
-				foundSame = allTypes.includes(dishes[i].type);
-				if(foundSame){
-				
-				}else{
-			
-					allTypes.push(dishes[i].type);
+		for(key in dishes) {
+				if(!allTypes.includes(dishes[key].type)) {
+					allTypes.push(dishes[key].type);
 				}
-			}
-						
-
-		return allTypes;
-		
+		}
+		return allTypes;	
 	}
 
 	//Returns all ingredients for the dish selected.
@@ -116,73 +75,34 @@ var DinnerModel = function() {
 		return returnIngredients;
 	}
 
-
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
-		//DONE Lab 1
-		/*var totalPrice = 0;
-		menu.forEach(function(menuDish)
-		{
-		
-			menuDish.ingredients.forEach(function(ingredient) {
-					 totalPrice += ingredient.price;
-			});
-		});
-		return totalPrice*this.getNumberOfGuests();
-		*/
+		//TODO Lab 1
 		var totalPrice = 0;
-		dishes.forEach(function(dish)
-		{
-		
+		dishes.forEach(function(dish){
 			dish.ingredients.forEach(function(ingredient) {
 					 totalPrice += ingredient.price;
 			});
 		});
-		return totalPrice*this.getNumberOfGuests();
-		//return 70;
+		return totalPrice*numberOfGuests;
 	}
-		
+
+	//Return dish cost
+	this.getDishCost = function(dish) {
+		//TODO Lab 1
+		var dishCost = 0; 
+		dish.ingredients.forEach(function(ingredient)
+		{
+			dishCost += ingredient.price;
+		});
+		return dishCost;
+	}
 
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
-	this.addDishToMenu = function(id) {
-		//DONE Lab 1 
-		var counter = 0;
-		console.log(id);
-		var alreadyInMenu = false;
-
-		// if menu empty or does not exist, put new element in
-		if (menu === undefined || menu.length == 0) {
-
-			menu[0] = this.getDish(id);
-
-		//if items already in the menu
-		}else{ 
-
-			menu.forEach(function(menuDish)
-			{
-			
-				if(menuDish.id == id){
-					alreadyInMenu = true;
-					//break;
-				}
-				counter++;
-			});
-
-			if(alreadyInMenu == true){
-			//remove the excisting dish and add it again
-					this.removeDishFromMenu(id);
-					menu.push(this.getDish(id));
-
-			}else{
-			//add new dish to the end of the menu array
-					menu[counter] = this.getDish(id);
-			}
-		}
-	}
-
-	this.addDishToMenu2 = function(dishId) {
+	var menu = [];
+	this.addDishToMenu = function(dishId) {
 		//TODO Lab 1 
 		//menu is filled with one item for purpose of testing
 
@@ -239,50 +159,23 @@ var DinnerModel = function() {
 		}	
 	}
 
-	//function for testing that menu operations work
-	this.printMenu = function(){
-
-		if(menu.length == 0){
-			alert("Menu is empty!");
-		}
-		menu.forEach(function(menuDish){
-			console.log("menuDish : ", menuDish);
-		});
-
-	}
-
-
 	//Removes dish from menu
-	this.removeDishFromMenu = function(id) {
+	this.removeDishFromMenu = function(itemId) {
 		//TODO Lab 1
-		var counter = 0;
-		var idFound = false;
+		//try using filter!
+		var found = false;
+		menu.forEach(function(menuItem){
 
-		if(menu.length == 1){
-			if(menu[counter].id == id){
-				menu.splice(counter, 1); 
-			}else{
-				alert("The dish you tried to remove does not excist on the menu!");
+			if(menuItem.id == itemId)
+			{
+				found = true;
+				console.log("item found " + found);
+
+				menu.splice(menu.indexOf(menuItem),1);
+				console.log(menu);
 			}
-		}else{
-
-			menu.forEach(function(menuDish)
-				{
-					if(menuDish.id == id){
-						//remove the excisting dish 
-						menu.splice(counter, 1); 
-						idFound = true;
-					}
-					counter++;
-				});
-
-				if(idFound == false){
-					alert("The dish you tried to remove does not exist on the menu!");
-				}
-
-		}
+		});
 	}
-
 
 	//get all dishes to display using View
 	this.getReallyAllDishes = function() {
@@ -319,19 +212,6 @@ var DinnerModel = function() {
 	  });	
 	}
 
-	//Return dish cost
-	this.getDishCost = function(dish) {
-		//TODO Lab 1
-		var dishCost = 0; 
-		dish.ingredients.forEach(function(ingredient)
-		{
-			dishCost += ingredient.price;
-		});
-		return dishCost;
-	}
-
-
-
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
 	  for(key in dishes){
@@ -353,7 +233,7 @@ var DinnerModel = function() {
 	var dishes = [{
 		'id':1,
 		'name':'French toast',
-		'type':'appetizer',
+		'type':'starter',
 		'image':'toast.jpg',
 		'description':"In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg; stir well to combine. Soak bread slices in the egg mixture until saturated. Heat a lightly oiled griddle or frying pan over medium high heat. Brown slices on both sides, sprinkle with cinnamon and serve hot.",
 		'ingredients':[{ 
@@ -408,7 +288,7 @@ var DinnerModel = function() {
 		'id':3,
 		'name':'Baked Brie with Peaches',
 		'type':'starter',
-		'image':'bakedbrie.jpg',
+		'image':'bakedbrie.png',
 		'description':"Here is how you make it... Lore ipsum...",
 		'ingredients':[{ 
 			'name':'round Brie cheese',
@@ -492,7 +372,7 @@ var DinnerModel = function() {
 		'id':101,
 		'name':'MD 2',
 		'type':'main dish',
-		'image':'bakedbrie.jpg',
+		'image':'bakedbrie.png',
 		'description':"Here is how you make it... Lore ipsum...",
 		'ingredients':[{ 
 			'name':'ingredient 1',

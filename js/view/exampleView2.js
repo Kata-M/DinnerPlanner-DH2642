@@ -52,20 +52,27 @@ var ExampleView = function (container, model) {
 	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
+
+	 //for testing
+
 	var numGuests = model.getNumberOfGuests();
-	//numberOfGuests.append($("<p>"+ numGuests +"</p>"));
-	document.getElementById("numberOfGuests").innerHTML = numGuests;
+	numberOfGuests.append($("<p> Number of guests"+ numGuests +"</p>"));
 	console.log(numGuests);
 
 
 	/*
-	* Total Price 
+	Total Price 
 	*/
 
 	var totalPrice = container.find("#totalPrice");
 	var total = model.getTotalMenuPrice();
-	totalPrice.append($("<p> Total Price"+ total +"</p>"));
-	console.log(total);
+	//totalPrice.append($(total));
+	totalPrice.html("199");
+	console.log("total price ",total);
+
+	var privacy_string = total;
+	//document.getElementById("total_price").value = total;
+	document.getElementById("total_price").innerHTML = total;
 
 
 	/**
@@ -73,35 +80,49 @@ var ExampleView = function (container, model) {
 	 * in our view to dynamically set it's value to "Hello World".
 	 */
 	var fetchIngredients = container.find("#fetchIngredients");	
-	//var fetchIngredients = document.getElementById('fetchIngredients');
-
-	var ingredients = model.getIngredientsforDish(1);
+	//var fetchIngredients = document.getElementById('fetchIngredients');	
+	var ingredients = model.getAllIngredients();
 	console.log(ingredients);
 
 	fetchIngredients.append($("<table id='ingredientTable' class='table table-sm'></table>"));
-	var ingredientTable = fetchIngredients.find("#ingredientTable");
-	
-	ingredientTable.append($("<tr id='totalGuests'></tr>"));
-	var totalGuestRow = ingredientTable.find("#totalGuests");
-	totalGuestRow.append($("<td style=' font-weight: bold '> INGREDIENTS FOR "+numGuests+"</td>"));
+	var table = fetchIngredients.find("#ingredientTable");
 
-	var i = 0;	
-	var totalPrice = 0;
-	ingredients.forEach(function(ingredient)
-	{
-		ingredientTable.append($("<tr id='"+i+"'></tr>"));
-		var row = ingredientTable.find("#"+i);
+	/*fetchIngredients.innerHTML += '<table class="table table-sm">'+
+										'<thead>'+
+											'<tr>'+
+												'<th>Quantity</th>'+
+												'<th>Ingredients</th>'+
+												'<th>Unit</th>'+
+												'<th>Cost</th>'+
+											'</tr>'+
+										'</thead>'+
+										'<tbody>'+*/
 
+
+	//ingredients.forEach(function(ingredient)
+	//{
+	/*	table.append($("<tr id='"+ingredient.name+"'></tr>"));
+		var row = table.find("#"+ingredient.name);
+
+		//table.append("<td>"+ingredient.quantity+ingredient.unit+ "</td>");
+		//table.append("<td>"+ingredient.name+"</td>");
+		//table.append("<td>SEK</td>");
+		//table.append("<td>"+ingredient.price+"</td>");
 		row.append($("<td>"+ingredient.quantity+ingredient.unit+ "</td>"));
 		row.append($("<td>"+ingredient.name+"</td>"));
 		row.append($("<td>SEK</td>"));
 		row.append($("<td>"+ingredient.price+"</td>"));
-		totalPrice += ingredient.price;
-		i++;							
-	});	
-	ingredientTable.append($("<tr id='totalPrice'></tr>"));
-	var totalPriceRow = ingredientTable.find("#totalPrice");
-	totalPriceRow.append($("<td style=' font-weight: bold '> Total Price "+totalPrice+"</td>"));
 
+		/*fetchIngredients.innerHTML +=	'<tr>'+
+											'<td>'+ingredient.quantity+ingredient.unit+'</td>'+
+											'<td>'+ingredient.name+'</td>'+
+											'<td>SEK</td>'+
+											'<td>'+ingredient.price+'</td>'+
+										'</tr>'	*/
+
+	//});	
+
+
+	/*fetchIngredients.innerHTML += '</tbody>'+ '</table>'*/
+	
 }
- 
