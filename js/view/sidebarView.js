@@ -77,6 +77,14 @@ var ExampleView = function (container, model) {
 	document.getElementById("total_price").innerHTML = total;
 
 
+
+	/*
+	dish price
+	*/
+	//var dishPrice = model.getDishCost(dish);
+
+
+
 	/**
 	 * Here we use @var {jQuery object} fetchIngredients that is a reference to <span>
 	 * in our view to dynamically set it's value to "Hello World".

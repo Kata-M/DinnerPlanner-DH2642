@@ -123,6 +123,7 @@ var DinnerModel = function() {
 			});
 		});
 		return totalPrice*this.getNumberOfGuests();
+		//return 70;
 	}
 		
 
@@ -229,6 +230,17 @@ var DinnerModel = function() {
 		}
 	  	return dish.type == type && found;
 	  });	
+	}
+
+	//Return dish cost
+	this.getDishCost = function(dish) {
+		//TODO Lab 1
+		var dishCost = 0; 
+		dish.ingredients.forEach(function(ingredient)
+		{
+			dishCost += ingredient.price;
+		});
+		return dishCost;
 	}
 
 
