@@ -35,7 +35,7 @@ var FindDishView = function(findDishContainer,model){
 		document.getElementById("selectType").innerHTML += '<option value="'+type+'">'+ type +'</option>'	
 	});
 
-	//stuff from sindhu
+
 
 	//var showDishes = dishSearchContainer.find("#filtered");
 		var dishCost = 0;
