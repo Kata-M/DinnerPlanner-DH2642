@@ -12,10 +12,10 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */ 
-var DishesCardView = function (dishesContainer, model) {
+var DishOverviewView = function (dishOverviewContainer, model) {
 	
 	//fetch all dishes and create View
-	var showAllDishes = dishesContainer.find("#showAllDishes");
+	var showAllDishes = dishOverviewContainer.find("#showAllDishes");
 	var allDishes = model.getReallyAllDishes();
 	var totalCost = model.getTotalMenuPrice();
 	var dishCost = 0;
@@ -31,4 +31,3 @@ var DishesCardView = function (dishesContainer, model) {
 	document.getElementById("showAllDishes").innerHTML += '<div class="col-sm-12"><h3>Total Cost : $'+totalCost+'</h3></div>'
 
 }
- 

@@ -12,7 +12,7 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */ 
-var ExampleView = function (container, model) {
+var DishSearchView = function (dishSearchContainer, model) {
 	
 	/**
 	 * We use the @method find() on @var {jQuery object} container to look for various elements 
@@ -33,7 +33,7 @@ var ExampleView = function (container, model) {
 	 * in some other view gives the same ID to another element.
 	 * 
 	 */
-	var numberOfGuests = container.find("#numberOfGuests");
+	var numberOfGuests = dishSearchContainer.find("#numberOfGuests");
 
 	/**
 	 * When we want references to some view elements to be available from outside of view, we 
@@ -45,8 +45,8 @@ var ExampleView = function (container, model) {
 	 * this button and do something with it (see Lab 2).
 	 * 
 	 */
-	this.plusButton = container.find("#plusGuest");
-	this.minusButton = container.find("#minusGuest");
+	this.plusButton = dishSearchContainer.find("#plusGuest");
+	this.minusButton = dishSearchContainer.find("#minusGuest");
 	
 	/**
 	 * Here we use @var {jQuery object} numberOfGuests that is a reference to <span>
@@ -66,7 +66,7 @@ var ExampleView = function (container, model) {
 	Total Price 
 	*/
 
-	var totalPrice = container.find("#totalPrice");
+	var totalPrice = dishSearchContainer.find("#totalPrice");
 	var total = model.getTotalMenuPrice();
 	//totalPrice.append($(total));
 	totalPrice.html("199");
@@ -78,7 +78,7 @@ var ExampleView = function (container, model) {
 
 
 	/*
-	Search Types
+	 * Search Types
 	*/
 
 	var types = model.getAllTypes();
@@ -89,59 +89,10 @@ var ExampleView = function (container, model) {
 		{
 			document.getElementById("type"+n).innerHTML = type;
 			n++;
-
 		});
-
-
-
-	/**
-	 * Here we use @var {jQuery object} fetchIngredients that is a reference to <span>
-	 * in our view to dynamically set it's value to "Hello World".
-	 */
-	var fetchIngredients = container.find("#fetchIngredients");	
-	//var fetchIngredients = document.getElementById('fetchIngredients');	
-	var ingredients = model.getAllIngredients();
-	console.log(ingredients);
-
-	fetchIngredients.append($("<table id='ingredientTable' class='table table-sm'></table>"));
-	var table = fetchIngredients.find("#ingredientTable");
-
-	/*fetchIngredients.innerHTML += '<table class="table table-sm">'+
-										'<thead>'+
-											'<tr>'+
-												'<th>Quantity</th>'+
-												'<th>Ingredients</th>'+
-												'<th>Unit</th>'+
-												'<th>Cost</th>'+
-											'</tr>'+
-										'</thead>'+
-										'<tbody>'+*/
-
-
-	//ingredients.forEach(function(ingredient)
-	//{
-	/*	table.append($("<tr id='"+ingredient.name+"'></tr>"));
-		var row = table.find("#"+ingredient.name);
-
-		//table.append("<td>"+ingredient.quantity+ingredient.unit+ "</td>");
-		//table.append("<td>"+ingredient.name+"</td>");
-		//table.append("<td>SEK</td>");
-		//table.append("<td>"+ingredient.price+"</td>");
-		row.append($("<td>"+ingredient.quantity+ingredient.unit+ "</td>"));
-		row.append($("<td>"+ingredient.name+"</td>"));
-		row.append($("<td>SEK</td>"));
-		row.append($("<td>"+ingredient.price+"</td>"));
-
-		/*fetchIngredients.innerHTML +=	'<tr>'+
-											'<td>'+ingredient.quantity+ingredient.unit+'</td>'+
-											'<td>'+ingredient.name+'</td>'+
-											'<td>SEK</td>'+
-											'<td>'+ingredient.price+'</td>'+
-										'</tr>'	*/
-
-	//});	
-
-
-	/*fetchIngredients.innerHTML += '</tbody>'+ '</table>'*/
 	
+
+		/*
+		* Add dish for loop to display all dishes
+		*/
 }
