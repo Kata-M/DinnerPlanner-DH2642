@@ -4,7 +4,6 @@ var SidebarViewController = function(view,model,app){
 		app.showdishOverviewView();
 	});
 
-
 	view.plusButton.click(function(){ 
 			model.setNumberOfGuests(model.getNumberOfGuests()+1);
 	});

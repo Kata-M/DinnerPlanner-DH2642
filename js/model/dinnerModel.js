@@ -1,12 +1,11 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
- 
- 	console.log("Hello Javascript KATA");
 	//TODO Lab 1 implement the data structure that will hold number of guest
 	// and selected dishes for the dinner menu
 
-	var numberOfGuests = 5; //type int
-	var menu = []; //type array/queue
+	var numberOfGuests = 1; //type int
+	var menu = [];
+
 	var allTypes = [];
 
 	//OBSERVER STUFF ----->
@@ -25,14 +24,14 @@ var DinnerModel = function() {
 
 	this.setNumberOfGuests = function(num) {
 		//DONE Lab 1
-		console.log("set number of guests to: ", num);
-		numberOfGuests = num;
+		if(num>0){
+			numberOfGuests = num;
+		}
 		this.notifyObservers();
 	}
 	
 	this.getNumberOfGuests = function() {
 		//DONE Lab 1
-		console.log("get number of guests ");
 		return numberOfGuests;
 
 	}
@@ -63,21 +62,6 @@ var DinnerModel = function() {
 
 	}
 
-
-
-	//Returns all ingredients for all the dishes on the menu.
-	/*this.getAllIngredients = function() {
-		//DONE Lab 1		
-		var returnIngredients = new Array();
-
-		for(key in menu){
-			//console.log("ingredients for item [", key, "]  ", dishes[key].ingredients);
-			returnIngredients[key] = menu[key].ingredients;
-
-		}
-		//console.log(" returnIngredients : ", returnIngredients)
-    	return returnIngredients;
-	}*/
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
 		//TODO Lab 1
@@ -134,7 +118,7 @@ var DinnerModel = function() {
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
 		//DONE Lab 1
-		/*var totalPrice = 0;
+		var totalPrice = 0;
 		menu.forEach(function(menuDish)
 		{
 		
@@ -143,17 +127,7 @@ var DinnerModel = function() {
 			});
 		});
 		return totalPrice*this.getNumberOfGuests();
-		*/
-		var totalPrice = 0;
-		dishes.forEach(function(dish)
-		{
 		
-			dish.ingredients.forEach(function(ingredient) {
-					 totalPrice += ingredient.price;
-			});
-		});
-		return totalPrice*this.getNumberOfGuests();
-		//return 70;
 	}
 		
 
@@ -194,6 +168,8 @@ var DinnerModel = function() {
 					menu[counter] = this.getDish(id);
 			}
 		}
+
+		this.notifyObservers();
 	}
 
 	this.addDishToMenu2 = function(dishId) {
