@@ -1,11 +1,15 @@
 var DishDetailsView = function (dishDetailsContainer, model, id) {
 
-	this.id = id ; 
+	 
 	var numGuests = model.getNumberOfGuests();
 	var dishDetails = dishDetailsContainer.find("#dishDetails");	
-	var fetchIngredients = dishDetailsContainer.find("#fetchIngredients");	
+	var fetchIngredients = dishDetailsContainer.find("#fetchIngredients");
+	var ID;	
 
-	var loadDishDetails =function(){
+	var loadDishDetails = (id) => {
+
+		this.id = id ;
+		ID = id;
 
 		var dish = model.getDish(id);
 		document.getElementById("dishDetails").innerHTML = '<h2 style="text-align: left">'+dish.name+'</h2><br/>'+'<img src="images\\'+dish.image+'" alt="food" style="width:50%; margin-bottom:20px"/>'+'<p>'+dish.description+'</p>'+
@@ -46,7 +50,8 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 		document.getElementById("fetchIngredients").innerHTML += '</table>'
 	}	
 
-	loadDishDetails();
+	//loadDishDetails(id);
+	this.loadDishDetails = loadDishDetails;
 
 	this.backToSearchButton = dishDetailsContainer.find("#backToSearch");
 	this.addToMenuButton = dishDetailsContainer.find("#addToMenu");
@@ -58,7 +63,7 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 				var childTable = document.getElementById("ingredientTable");
 				parentTable.removeChild(childTable);
 
-				loadDishDetails();
+				loadDishDetails(ID);
 	}
   
 	model.addObserver(this.update);
