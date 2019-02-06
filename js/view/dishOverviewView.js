@@ -25,7 +25,7 @@ var DishOverviewView = function (dishOverviewContainer, model) {
 			dishCost = model.getDishCost(dish);
 
 			document.getElementById("showAllDishes").innerHTML += '<div class="col-sm-3" style="padding-bottom:10px">'+
-			'<div class="col-item">'+'<div class="photo">'+'<img src="images/'+dish.image+
+			'<div class="col-item">'+'<div class="photo">'+'<img src="https://spoonacular.com/recipeImages/'+dish.image+
 			'" class="img-responsive" alt="a" />'+'</div>'+'<div class="info">'+'<div class="row">'+
 			'<div class="price col-md-12">'+'<h5>'+dish.name+'</h5>'+'<br/>'+'</div>'+
 			'</div>'+'<div class="separator clear-left">'+

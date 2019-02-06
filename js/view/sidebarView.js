@@ -30,7 +30,7 @@ var SidebarView = function(sidebarContainer,model){
 
 			allMenu.forEach(function(menuItem){
 
-				var menuItemName = menuItem.name;
+				var menuItemName = menuItem.title;
 				console.log("menuItemName", menuItemName);
 				var menuItemCost = model.getDishCost(menuItem)*model.getNumberOfGuests();
 				

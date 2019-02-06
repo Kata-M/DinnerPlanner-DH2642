@@ -122,8 +122,8 @@ var DinnerModel = function() {
 		menu.forEach(function(menuDish)
 		{
 		
-			menuDish.ingredients.forEach(function(ingredient) {
-					 totalPrice += ingredient.price;
+			menuDish.extendedIngredients.forEach(function(ingredient) {
+					 totalPrice += 1;
 			});
 		});
 		return totalPrice*this.getNumberOfGuests();
@@ -140,36 +140,41 @@ var DinnerModel = function() {
 		console.log(id);
 		var alreadyInMenu = false;
 
-		// if menu empty or does not exist, put new element in
-		if (menu === undefined || menu.length == 0) {
+		this.getDish(id)
+		.then(dish => {
 
-			menu[0] = this.getDish(id);
+				// if menu empty or does not exist, put new element in
+				if (menu === undefined || menu.length == 0) {
 
-		//if items already in the menu
-		}else{ 
+					menu[0] = dish;
 
-			menu.forEach(function(menuDish)
-			{
-			
-				if(menuDish.id == id){
-					alreadyInMenu = true;
-					//break;
+				//if items already in the menu
+				}else{ 
+
+					menu.forEach(function(menuDish)
+					{
+					
+						if(menuDish.id == id){
+							alreadyInMenu = true;
+							//break;
+						}
+						counter++;
+					});
+
+					if(alreadyInMenu == true){
+					//remove the excisting dish and add it again
+							//this.removeDishFromMenu(id);
+							//menu.push(this.getDish(id));
+
+					}else{
+					//add new dish to the end of the menu array
+							menu[counter] = dish;
+					}
 				}
-				counter++;
-			});
+				this.notifyObservers();
+		});
 
-			if(alreadyInMenu == true){
-			//remove the excisting dish and add it again
-					this.removeDishFromMenu(id);
-					menu.push(this.getDish(id));
-
-			}else{
-			//add new dish to the end of the menu array
-					menu[counter] = this.getDish(id);
-			}
-		}
-
-		this.notifyObservers();
+		
 	}
 
 	this.addDishToMenu2 = function(dishId) {
@@ -342,9 +347,9 @@ var DinnerModel = function() {
 		
 
 		var dishCost = 0; 
-		dish.ingredients.forEach(function(ingredient)
+		dish.extendedIngredients.forEach(function(ingredient)
 		{
-			dishCost += ingredient.price;
+			dishCost += 1;
 		});
 		return dishCost;
 	}
