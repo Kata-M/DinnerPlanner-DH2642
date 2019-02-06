@@ -50,13 +50,6 @@ $(function() {
   		$("#sidebarView").show();
   		$("#dishDetailsView").show();
   		dishDetailsView.loadDishDetails(id);
-
-		// And create the instance of dishDetailsView
-		//var dishDetailsView = new DishDetailsView(dishDetailsContainer,model,id);
-
-		// Instantiate the controller and pass it the view and model
-		//var dishDetailsViewController = new DishDetailsViewController(dishDetailsView, model, this);
-
   	}
 
   	this.showdishOverviewView = function(){
