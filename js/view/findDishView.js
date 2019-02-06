@@ -99,9 +99,9 @@ var FindDishView = function(findDishContainer,model){
 	this.filterButton = findDishContainer.find("#filtered");
 	
 	//the value in filter field
-	var filteredDishes = model.getAllDishes(type);
-	var type = document.getElementById("selectType").value;
-	var searchKeyword = document.getElementById("searchInput").value;
+	//var filteredDishes = model.getAllDishes(type);
+	//var type = document.getElementById("selectType").value;
+	//var searchKeyword = document.getElementById("searchInput").value;
 
 
 	//filteredDishes.forEach(function(filteredDish){

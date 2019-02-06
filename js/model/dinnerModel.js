@@ -252,17 +252,23 @@ var DinnerModel = function() {
 
 	 this.getAllDishes = function (type, filter) {
 		var SOME_API_URL;
+		var API_KEY = "";
+		
+
 		if(type != null){
 			SOME_API_URL  = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type="+type;
 		}
+		/*
 		if(filter != null){
 			SOME_API_URL  = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="+filter;
 		}else{
 			SOME_API_URL  = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
+		}*/
+		if(filter != null && type != null){
+			
+			SOME_API_URL  = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type="+
+			type+"&query="+filter;
 		}
-
-		
-		var API_KEY = "";
 		
 		return fetch(SOME_API_URL,{ 
 				  headers:{   
