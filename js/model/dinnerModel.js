@@ -316,7 +316,7 @@ var DinnerModel = function() {
 	 this.getAllDishes = function (type, filter) {
 		
 		var SOME_API_URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
-		var API_KEY = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";
+		var API_KEY = "";
 		
 		return fetch(SOME_API_URL,{ 
 				  headers:{   
@@ -363,7 +363,7 @@ var DinnerModel = function() {
 	this.getDish = function (id) {
 
 		var SOME_API_URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information";
-		var API_KEY = "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767";
+		var API_KEY = "";
 
 		var dish = fetch(SOME_API_URL,{ 
 			 headers:{   
