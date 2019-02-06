@@ -135,14 +135,12 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		//DONE Lab 1 
 		var counter = 0;
 		console.log(id);
 		var alreadyInMenu = false;
 
 		this.getDish(id)
 		.then(dish => {
-
 				// if menu empty or does not exist, put new element in
 				if (menu === undefined || menu.length == 0) {
 
@@ -169,81 +167,14 @@ var DinnerModel = function() {
 					}else{
 					//add new dish to the end of the menu array
 							menu[counter] = dish;
+							console.log(dish);
 					}
 				}
+
 				this.notifyObservers();
 		});
 
 		
-	}
-
-	this.addDishToMenu2 = function(dishId) {
-		//TODO Lab 1 
-		//menu is filled with one item for purpose of testing
-
-		var typeFound = false;
-		var nameFound = false;
-		var menuItemIndex;
-		var userAnsforAdd = "No";
-		var userAnsforReplace = "No"; 
-		var dish = this.getDish(dishId);
-
-		// if menu empty or does not exist, put new element in
-		if (menu === undefined || menu.length == 0) {
-			menu[0] = this.getDish(dishId);
-		
-		//if items already in the menu
-		}else
-		{ 
-			for(key in menu){
-				if(menu[key].type == dish.type) {
-					typeFound = true;
-					if(menu[key].name == dish.name){
-						nameFound = true;
-						alert(dish.name+" already exists in your menu");
-					}
-					menuItemIndex = key;
-				}
-			}
-			//if the type exists, prompt user for replace, add to menu or dont change menu
-			if ((typeFound ==true && nameFound == false))
-			{
-				userAnsforReplace = prompt("You have "+dish.type+"s. Would you want to may be replace any with "+dish.name+"?  yes replace/ i want to add/ dont add");
-				if(userAnsforReplace == "yes" || userAnsforReplace == "yes replace"){
-					alert(menu[menuItemIndex].name+" is replaced with "+dish.name+" in your menu!");
-					this.removeDishFromMenu(menu[menuItemIndex].id);
-					menu.push(dish);
-					console.log(menu);
-				} 
-				else if(userAnsforReplace == "i want to add")
-				{
-					menu.push(dish);
-					alert(dish.name+" added to your menu!");
-					console.log(menu);
-				}
-				else {
-					alert("no changes were made to your menu!");
-				}
-			} 
-			//if the type does not exist add the dish to menu
-			if (typeFound ==false)
-			{
-					menu.push(dish);
-					alert(dish.name+" added to your menu!");
-			}
-		}	
-	}
-
-	//function for testing that menu operations work
-	this.printMenu = function(){
-
-		if(menu.length == 0){
-			alert("Menu is empty!");
-		}
-		menu.forEach(function(menuDish){
-			console.log("menuDish : ", menuDish);
-		});
-
 	}
 
 

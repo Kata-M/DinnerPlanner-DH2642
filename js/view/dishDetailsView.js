@@ -44,8 +44,8 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 
 				row.append($("<td>"+ingredient.measures.metric.amount+ingredient.measures.metric.unitShort+ "</td>"));
 				row.append($("<td>"+ingredient.originalName+"</td>"));
+				row.append($("<td>"+1*numGuests+"</td>"));
 				row.append($("<td>SEK</td>"));
-				//row.append($("<td>"+ingredient.price*numGuests+"</td>"));
 				//totalPrice += ingredient.price*numGuests;
 				totalPrice += numGuests;
 				i++;							
