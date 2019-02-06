@@ -6,7 +6,7 @@ var DinnerModel = function() {
 	var numberOfGuests = 1; //type int
 	var menu = [];
 	var dishes = [];
-	var allTypes = [];
+	var allTypes = ["main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "drink"];
 
 	//OBSERVER STUFF ----->
 	//FUNCTION NOTIFY
@@ -77,7 +77,7 @@ var DinnerModel = function() {
 	}
 
 	this.getAllTypes = function() {
-		//TODO Lab 1
+		/*
 		var allTypes = new Array();
 		var foundSame = false;
 		var n = 0;
@@ -95,7 +95,8 @@ var DinnerModel = function() {
 					allTypes.push(dishes[i].type);
 				}
 			}
-						
+				
+		*/		
 
 		return allTypes;
 		
@@ -250,8 +251,17 @@ var DinnerModel = function() {
 	// }
 
 	 this.getAllDishes = function (type, filter) {
+		var SOME_API_URL;
+		if(type != null){
+			SOME_API_URL  = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type="+type;
+		}
+		if(filter != null){
+			SOME_API_URL  = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="+filter;
+		}else{
+			SOME_API_URL  = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
+		}
+
 		
-		var SOME_API_URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
 		var API_KEY = "";
 		
 		return fetch(SOME_API_URL,{ 

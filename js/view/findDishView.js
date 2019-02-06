@@ -64,14 +64,15 @@ var FindDishView = function(findDishContainer,model){
 
 		var dishCost = 0;
 
-		var filterValue = document.getElementById("selectType").value;
+		var type = document.getElementById("selectType").value;
 		var searchKeyword = document.getElementById("searchInput").value;
 		 
-		var allDishes = model.getAllDishes("all")
+		//var allDishes = 
+		model.getAllDishes(type,searchKeyword)
 		.then(dishes => {
 		
 			document.getElementById("filtered").innerHTML = '<div class="container">'+'<div class="row" style="margin-top:30px">'
-			allDishes.forEach(function(dish){
+			dishes.forEach(function(dish){
 				
 				//dishCost = model.getDishCost(dish);
 				
@@ -98,8 +99,8 @@ var FindDishView = function(findDishContainer,model){
 	this.filterButton = findDishContainer.find("#filtered");
 	
 	//the value in filter field
-	var filteredDishes = model.getAllDishes(filterValue);
-	var filterValue = document.getElementById("selectType").value;
+	var filteredDishes = model.getAllDishes(type);
+	var type = document.getElementById("selectType").value;
 	var searchKeyword = document.getElementById("searchInput").value;
 
 
