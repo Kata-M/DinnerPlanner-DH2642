@@ -17,10 +17,13 @@ var FindDishView = function(findDishContainer,model){
 	//first time load "all" filter type and all dishes
 	var dishCost = 0;
 	//var allDishes = model.getAllDishes("all");
+	$(window).load(function() {
+		$("#dishesLoading").show();
+	});
 	var allDishes = model.getAllDishes("all")
 			.then(dishes => {
 
-
+					$("#dishesLoading").hide();
 
 					//Throws an Error due to time out 
 					// var SOME_API_URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
@@ -55,7 +58,10 @@ var FindDishView = function(findDishContainer,model){
 					});
 					document.getElementById("filtered").innerHTML += '</div>'+'</div>'
 
-			});
+			}).catch( error => {
+				alert("Error in the network connection! ):");
+				console.log(error);
+		   });
 		
 
 
@@ -68,10 +74,11 @@ var FindDishView = function(findDishContainer,model){
 		var searchKeyword = document.getElementById("searchInput").value;
 		 
 		//var allDishes = 
+		//$("#dishesLoading").show();
 		model.getAllDishes(type,searchKeyword)
 		.then(dishes => {
-		
 			document.getElementById("filtered").innerHTML = '<div class="container">'+'<div class="row" style="margin-top:30px">'
+			//$("#dishesLoading").hide();
 			dishes.forEach(function(dish){
 				
 				//dishCost = model.getDishCost(dish);
@@ -89,7 +96,10 @@ var FindDishView = function(findDishContainer,model){
 			});
 			document.getElementById("filtered").innerHTML += '</div>'+'</div>'
 			//$("#findDishView").reload();
-		});
+		}).catch( error => {
+			alert("Error in the network connection! ):");
+			console.log(error);
+	   });
 	}
 
 

@@ -10,9 +10,12 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 
 		this.id = id ;
 		ID = id;
-
+		$(window).load(function() {
+			$("#dishDetailsLoading").show();
+		});
 		var eachDish = model.getDish(id)
 		.then(dish => {
+			$("#dishDetailsLoading").hide();
 
 			console.log(dish);
 			
@@ -56,7 +59,10 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 
 			document.getElementById("fetchIngredients").innerHTML += '</table>'
 
-		});	
+		}).catch( error => {
+			alert("Error in the network connection! ):");
+			console.log(error);
+	   });
 		
 	}	
 			

@@ -41,7 +41,8 @@ $(function() {
 	this.showSelectDishScreen = function(){
 		hideAllViews();
   		$("#sidebarView").show();
-  		$("#findDishView").show();
+		$("#findDishView").show();
+		  
   	}
 
 
