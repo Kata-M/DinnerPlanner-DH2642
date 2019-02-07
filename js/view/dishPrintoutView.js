@@ -13,27 +13,32 @@ var DishPrintoutView = function (dishPrintoutContainer, model) {
 		menu = model.getFullMenu();
 		document.getElementById("printOneDish").innerHTML = '<div class="container">'
 
+
 		menu.forEach(function(menuItem)
 		{
+			var menuInstructions = menuItem.instructions;
+			if(menuInstructions == null){
+				menuInstructions = "Sorry, no description available for this dish ): "
+			}
 
 			document.getElementById("printOneDish").innerHTML += '<div class="row">'+
 			'<div class="col-sm-3" style="padding-bottom:10px">'+
 				'<div class="col-item" style="margin:30px">'+'<div class="photo">'+'<img src="'+menuItem.image+'" class="img-responsive" alt="a" />'+'</div>'+'<div class="info">'+'<div class="row">'+
 				'<div class="price col-md-12">'+'<h5>'+menuItem.title+'</h5>'+'<br/>'+'</div>'+
 				'</div>'+'<div class="separator clear-left">'+
-				'<i class="fa fa-list"></i><h5 class="price-text-color">'//+dishCost+
+				'<i class="fa fa-list"></i><h5 class="price-text-color">'
 				+'</h5>'+'</div>'+'<div class="clearfix">'+'</div>'+'</div>'+'</div>'+'</div>' +
 
 				'<div class="col-sm-4" style="padding:10px">'+
 				
 				'<h2>'+menuItem.title+'</h2>'+'<br/>'+
-				'<p>'+ menuItem.instructions+ '</p>' +
+				'<p>'+ menuInstructions+ '</p>' +
 				'</div>' +
 
 				'<div class="col-sm-4" style="padding:10px">'+
 				
 				'<h4>'+"PREPARATION"+'</h4>'+'<br/>'+
-				'<p>'+ menuItem.instructions+ '</p>' +
+				'<p>'+ menuInstructions+ '</p>' +
 				'</div>' +
 			'</div>'
 		});	

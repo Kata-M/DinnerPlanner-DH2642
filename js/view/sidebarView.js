@@ -10,10 +10,7 @@ var SidebarView = function(sidebarContainer,model){
   	document.getElementById("guests").innerHTML = numGuests; 
 
   	var totalCost = model.getTotalMenuPrice();
-  	//document.getElementById("total_cost").innerHTML = totalCost;
 
-  	
-  	//-----
   	var populateMenuView = function(){
 		 	var allMenu = model.getFullMenu();
 
@@ -54,23 +51,20 @@ var SidebarView = function(sidebarContainer,model){
 
 			document.getElementById("menu").innerHTML += '</tbody>'
 	}
-  	//-----
+
   	populateMenuView();
 
   	this.update=function(){
 	    // redraw just the portion affected by the changeDetails
 	    // or remove all graphics in the view, read the whole model and redraw 
-		//if(args=='numberOfGuest' || args == 'menu')
-		//{	
+
 			numGuests = model.getNumberOfGuests();
 	  		document.getElementById("guests").innerHTML = numGuests;
 
 		  	populateMenuView();
-		//}
 	}
 
 
 	model.addObserver(this.update);
-	//model.addObserver(this);
 
 }

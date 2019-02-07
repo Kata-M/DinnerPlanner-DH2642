@@ -1,7 +1,7 @@
 $(function() {
-	//We instantiate our model
+	//We instantiate our model and views
 	var model = new DinnerModel();
-	//var container = $("#exampleView");
+
 	var welcomeContainer = $("#welcomeView");
 	var welcomeView = new WelcomeView(welcomeContainer,model);
 	var welcomeViewController = new WelcomeViewController(welcomeView,model,this);

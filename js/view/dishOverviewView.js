@@ -28,7 +28,7 @@ var DishOverviewView = function (dishOverviewContainer, model) {
 			'<div class="col-item">'+'<div class="photo">'+'<img src="'+dish.image+'" class="img-responsive" alt="a" />'+'</div>'+'<div class="info">'+'<div class="row">'+
 			'<div class="price col-md-12">'+'<h5>'+dish.title+'</h5>'+'<br/>'+'</div>'+
 			'</div>'+'<div class="separator clear-left">'+
-			'<i class="fa fa-list"></i><h5 class="price-text-color">'//+dishCost+
+			'<i class="fa fa-list"></i><h5 class="price-text-color">'
 			+'</h5>'+'</div>'+'<div class="clearfix">'+'</div>'+'</div>'+'</div>'+'</div>'		
 		});
 		document.getElementById("showAllDishes").innerHTML += '</div>'+'</div>'

@@ -2,7 +2,6 @@ var DishDetailsViewController = function(view, model, app) {
     
   view.backToSearchButton.click(function(){ 
 		app.showSelectDishScreen();
-		// here shoul clear the id from dish details view
 	});  
 
 

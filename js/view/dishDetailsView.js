@@ -18,18 +18,19 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 			$("#dishDetailsLoading").hide();
 
 			console.log(dish);
+			var dishInstructions = dish.instructions;
+			if(dishInstructions == null){
+				dishInstructions = "Sorry, no description available for this dish ): "
+			}
 			
-			document.getElementById("dishDetails").innerHTML = '<h2 style="text-align: left">'+dish.title+'</h2><br/>'+'<img src="'+dish.image+'" alt="food" style="width:50%; margin-bottom:20px"/>'+'<p>'+dish.instructions+'</p>'+
-			//'<button id= "backToSearch" class="btn center-block buttonclr">Back to search</button>'+
+			document.getElementById("dishDetails").innerHTML = '<h2 style="text-align: left">'+dish.title+'</h2><br/>'+'<img src="'+dish.image+'" alt="food" style="width:50%; margin-bottom:20px"/>'+'<p>'+dishInstructions+'</p>'+
 			'<br/><br/>'+
-			'<h2 style="text-align: left">PREPARATION</h2>'+'<p>'+dish.instructions+'</p>'
+			'<h2 style="text-align: left">PREPARATION</h2>'+'<p>'+dishInstructions+'</p>'
 			
-			//var ingredients = model.getIngredientsforDish(id);
 			var ingredients = dish.extendedIngredients ;
 
 			console.log(ingredients);
 
-			//fetchIngredients.append($("<table id='ingredientTable' class='table table-sm'></table>"));
 			document.getElementById("fetchIngredients").innerHTML = '<table id="ingredientTable" class="table table-sm">'
 
 			var ingredientTable = fetchIngredients.find("#ingredientTable");
@@ -49,7 +50,6 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 				row.append($("<td>"+ingredient.originalName+"</td>"));
 				row.append($("<td>"+1*numGuests+"</td>"));
 				row.append($("<td>SEK</td>"));
-				//totalPrice += ingredient.price*numGuests;
 				totalPrice += numGuests;
 				i++;							
 			});	
@@ -67,7 +67,6 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 	}	
 			
 
-	//loadDishDetails(id);
 	this.loadDishDetails = loadDishDetails;
 
 	this.backToSearchButton = dishDetailsContainer.find("#backToSearch");
