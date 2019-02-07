@@ -16,6 +16,11 @@ var DishPrintoutView = function (dishPrintoutContainer, model) {
 		menu.forEach(function(menuItem)
 		{
 
+			var dishInstructions = menuItem.instructions;
+			if(dishInstructions == null){
+				dishInstructions = "Sorry, no description available for this dish ): "
+			}
+
 			document.getElementById("printOneDish").innerHTML += '<div class="row">'+
 			'<div class="col-sm-3" style="padding-bottom:10px">'+
 				'<div class="col-item" style="margin:30px">'+'<div class="photo">'+'<img src="'+menuItem.image+'" class="img-responsive" alt="a" />'+'</div>'+'<div class="info">'+'<div class="row">'+
@@ -27,13 +32,13 @@ var DishPrintoutView = function (dishPrintoutContainer, model) {
 				'<div class="col-sm-4" style="padding:10px">'+
 				
 				'<h2>'+menuItem.title+'</h2>'+'<br/>'+
-				'<p>'+ menuItem.instructions+ '</p>' +
+				'<p>'+ dishInstructions+ '</p>' +
 				'</div>' +
 
 				'<div class="col-sm-4" style="padding:10px">'+
 				
 				'<h4>'+"PREPARATION"+'</h4>'+'<br/>'+
-				'<p>'+ menuItem.instructions+ '</p>' +
+				'<p>'+ dishInstructions+ '</p>' +
 				'</div>' +
 			'</div>'
 		});	

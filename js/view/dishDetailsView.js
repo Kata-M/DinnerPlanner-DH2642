@@ -17,11 +17,15 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 		.then(dish => {
 
 			console.log(dish);
+			var dishInstructions = dish.instructions;
+			if(dishInstructions == null){
+				dishInstructions = "Sorry, no description available for this dish ): "
+			}
 			
-			document.getElementById("dishDetails").innerHTML = '<h2 style="text-align: left">'+dish.title+'</h2><br/>'+'<img src="'+dish.image+'" alt="food" style="width:50%; margin-bottom:20px"/>'+'<p>'+dish.instructions+'</p>'+
+			document.getElementById("dishDetails").innerHTML = '<h2 style="text-align: left">'+dish.title+'</h2><br/>'+'<img src="'+dish.image+'" alt="food" style="width:50%; margin-bottom:20px"/>'+'<p>'+dishInstructions+'</p>'+
 			//'<button id= "backToSearch" class="btn center-block buttonclr">Back to search</button>'+
 			'<br/><br/>'+
-			'<h2 style="text-align: left">PREPARATION</h2>'+'<p>'+dish.instructions+'</p>'
+			'<h2 style="text-align: left">PREPARATION</h2>'+'<p>'+dishInstructions+'</p>'
 			
 			//var ingredients = model.getIngredientsforDish(id);
 			var ingredients = dish.extendedIngredients ;
