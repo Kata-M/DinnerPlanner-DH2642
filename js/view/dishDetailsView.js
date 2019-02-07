@@ -12,6 +12,8 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 		ID = id;
 
 		var eachDish = model.getDish(id)
+
+
 		.then(dish => {
 
 			console.log(dish);
@@ -56,6 +58,9 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 
 			document.getElementById("fetchIngredients").innerHTML += '</table>'
 
+		}).catch( error => {
+     		alert("Error in the network connection! ):");
+     		console.log(error);
 		});	
 		
 	}	

@@ -6,6 +6,8 @@ var FindDishView = function(findDishContainer,model){
 	/* search types and populate the screen dynamicly */
 	this.selectType = findDishContainer.find("#selectType");
 	this.searchInput = findDishContainer.find("#searchInput");
+
+	this.spinner = findDishContainer.find("#spinner");
 	
 	var types = model.getAllTypes();
 	document.getElementById("selectType").innerHTML += '<option value= "all"> all </option>'	
@@ -55,6 +57,9 @@ var FindDishView = function(findDishContainer,model){
 					});
 					document.getElementById("filtered").innerHTML += '</div>'+'</div>'
 
+			}).catch( error => {
+     		alert("Error in the network connection! ):");
+     		console.log(error);
 			});
 		
 
@@ -89,6 +94,9 @@ var FindDishView = function(findDishContainer,model){
 			});
 			document.getElementById("filtered").innerHTML += '</div>'+'</div>'
 			//$("#findDishView").reload();
+		}).catch( error => {
+     		alert("Error in the network connection! ):");
+     		console.log(error);
 		});
 	}
 

@@ -64,6 +64,13 @@ $(function() {
   		$("#dishPrintoutView").show();
   	}
 
+  	this.showSpinner = function(){
+  		$("#spinner").show();
+  	}
+  	this.hideSpinner = function(){
+  		$("#spinner").hide();
+  	}
+
 
 
 });
