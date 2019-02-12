@@ -2,16 +2,18 @@ var DishPrintoutView = function (dishPrintoutContainer, model) {
 
 	this.editDinner2 = dishPrintoutContainer.find("#editDinner2");
 
-	var people = dishPrintoutContainer.find("#peoplePrintout");
-	document.getElementById("peoplePrintout").innerHTML = model.getNumberOfGuests();
+	var peoplePrintout = dishPrintoutContainer.find("#peoplePrintout");
+	var printOneDish = dishPrintoutContainer.find("#printOneDish");
+	peoplePrintout.html(model.getNumberOfGuests());
 
 	var menu = model.getFullMenu();
 
 	
 	var printOut = function(){
 
+		printOneDish.empty();
 		menu = model.getFullMenu();
-		document.getElementById("printOneDish").innerHTML = '<div class="container">'
+		printOneDish.append( '<div class="container">');
 
 
 		menu.forEach(function(menuItem)
@@ -21,7 +23,7 @@ var DishPrintoutView = function (dishPrintoutContainer, model) {
 				menuInstructions = "Sorry, no description available for this dish ): "
 			}
 
-			document.getElementById("printOneDish").innerHTML += '<div class="row">'+
+			printOneDish.append('<div class="row">'+
 			'<div class="col-sm-3" style="padding-bottom:10px">'+
 				'<div class="col-item" style="margin:30px">'+'<div class="photo">'+'<img src="'+menuItem.image+'" class="img-responsive" alt="a" />'+'</div>'+'<div class="info">'+'<div class="row">'+
 				'<div class="price col-md-12">'+'<h5>'+menuItem.title+'</h5>'+'<br/>'+'</div>'+
@@ -40,9 +42,9 @@ var DishPrintoutView = function (dishPrintoutContainer, model) {
 				'<h4>'+"PREPARATION"+'</h4>'+'<br/>'+
 				'<p>'+ menuInstructions+ '</p>' +
 				'</div>' +
-			'</div>'
+			'</div>');
 		});	
-		document.getElementById("printOneDish").innerHTML += '</div>'
+		printOneDish.append('</div>');
 	}
 
 	printOut();
@@ -50,7 +52,7 @@ var DishPrintoutView = function (dishPrintoutContainer, model) {
 
 	this.update=function(){
 
-		document.getElementById("peoplePrintout").innerHTML = model.getNumberOfGuests();
+		peoplePrintout.html(model.getNumberOfGuests());
 		menu = model.getFullMenu();
 		printOut();
 	}
