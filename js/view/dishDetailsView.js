@@ -1,12 +1,11 @@
 var DishDetailsView = function (dishDetailsContainer, model, id) {
 
 	 
-	var numGuests = model.getNumberOfGuests();
-	var dishDetails = dishDetailsContainer.find("#dishDetails");	
-	var fetchIngredients = dishDetailsContainer.find("#fetchIngredients");
 	var ID;	
 
 	var loadDishDetails = (id) => {
+
+		var numGuests = model.getNumberOfGuests();
 
 		this.id = id ;
 		ID = id;
@@ -22,16 +21,21 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 			if(dishInstructions == null){
 				dishInstructions = "Sorry, no description available for this dish ): "
 			}
-			
-			document.getElementById("dishDetails").innerHTML = '<h2 style="text-align: left">'+dish.title+'</h2><br/>'+'<img src="'+dish.image+'" alt="food" style="width:50%; margin-bottom:20px"/>'+'<p>'+dishInstructions+'</p>'+
-			'<br/><br/>'+
-			'<h2 style="text-align: left">PREPARATION</h2>'+'<p>'+dishInstructions+'</p>'
+
+			var dishDetails = dishDetailsContainer.find("#dishDetails");
+			dishDetails.empty();
+			dishDetails.append("<h2 style='text-align: left'>"+dish.title+"</h2><br/>"+"<img src='"+dish.image+"' alt='food' style='width:50%; margin-bottom:20px'/>"+"<p>"+dishInstructions+"</p>"+
+			"<br/><br/>"+
+			"<h2 style='text-align: left'>PREPARATION</h2>"+"<p>"+dishInstructions+"</p>");
+
 			
 			var ingredients = dish.extendedIngredients ;
 
 			console.log(ingredients);
 
-			document.getElementById("fetchIngredients").innerHTML = '<table id="ingredientTable" class="table table-sm">'
+			var fetchIngredients = dishDetailsContainer.find("#fetchIngredients");
+			fetchIngredients.empty();
+			fetchIngredients.append($("<table id='ingredientTable' class='table table-sm'></table>"));
 
 			var ingredientTable = fetchIngredients.find("#ingredientTable");
 			
@@ -56,8 +60,7 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 			ingredientTable.append($("<tr id='totalPrice'></tr>"));
 			var totalPriceRow = ingredientTable.find("#totalPrice");
 			totalPriceRow.append($("<td style=' font-weight: bold '> Total Price "+totalPrice+"</td>"));
-
-			document.getElementById("fetchIngredients").innerHTML += '</table>'
+			
 
 		}).catch( error => {
 			alert("Error in the network connection! ):");
@@ -73,11 +76,6 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 	this.addToMenuButton = dishDetailsContainer.find("#addToMenu");
 
 	this.update=function(){
-				numGuests = model.getNumberOfGuests();
-
-				var parentTable = document.getElementById("fetchIngredients");
-				var childTable = document.getElementById("ingredientTable");
-				parentTable.removeChild(childTable);
 
 				loadDishDetails(ID);
 	}
