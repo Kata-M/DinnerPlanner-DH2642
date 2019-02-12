@@ -1,27 +1,32 @@
 var SidebarView = function(sidebarContainer,model){
 
 	
-	this.numberOfGuests = sidebarContainer.find("#numberOfGuests");
+	var numberOfGuests = sidebarContainer.find("#guests");
 	this.confirmDinner = sidebarContainer.find("#confirmDinner");
 	this.plusButton = sidebarContainer.find("#plus");
 	this.minusButton = sidebarContainer.find("#minus");
 
+	var menu = sidebarContainer.find("#menu");
+
+
+
 	var numGuests = model.getNumberOfGuests();
-  	document.getElementById("guests").innerHTML = numGuests; 
+  	numberOfGuests.html(numGuests); 
 
   	var totalCost = model.getTotalMenuPrice();
 
   	var populateMenuView = function(){
-		 	var allMenu = model.getFullMenu();
+  		menu.empty();
+		var allMenu = model.getFullMenu();
 
-			document.getElementById("menu").innerHTML = 
-			'<thead>'+ 
+		menu.append('<thead>'+ 
                       '<tr>' +  
                         '<th>Dish Name</th>' + 
                         '<th align="left">Cost</th>' + 
                       '</tr>' + 
             '</thead>' +
-            '<tbody>'
+            '<tbody>'); 
+				console.log(menu);
 
 			console.log(model.getFullMenu());  
 
@@ -33,23 +38,23 @@ var SidebarView = function(sidebarContainer,model){
 				
 
 				
-				document.getElementById("menu").innerHTML += 
+				menu.append(
 				'<tr id="menuItem'+menuItemName+'">'+
 					'<th scope="row" id="1dish">'+menuItemName+'</th>' +
 					'<td id="1price"><span id="1dish_price">'+ menuItemCost + ' kr </span></td>' +
-				'</tr>'
+				'</tr>');
 			});
 			
 
 			totalCost = model.getTotalMenuPrice();
 			
-			document.getElementById("menu").innerHTML += 
+			menu.append(
 			'<tr id="menuCost">'+
 				'<th scope="row" id="1dish">'+"TOTAL COST"+'</th>' +
 				'<td id="1price"><span id="1dish_price">'+ totalCost + ' kr </span></td>' +
-			'</tr>'
+			'</tr>');
 
-			document.getElementById("menu").innerHTML += '</tbody>'
+			menu.append('</tbody>');
 	}
 
   	populateMenuView();
@@ -59,7 +64,8 @@ var SidebarView = function(sidebarContainer,model){
 	    // or remove all graphics in the view, read the whole model and redraw 
 
 			numGuests = model.getNumberOfGuests();
-	  		document.getElementById("guests").innerHTML = numGuests;
+
+	  		numberOfGuests.html(numGuests);
 
 		  	populateMenuView();
 	}
