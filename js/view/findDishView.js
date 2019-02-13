@@ -20,9 +20,9 @@ var FindDishView = function(findDishContainer,model){
 
 	//first time load "all" filter type and all dishes
 
-	$(window).load(function() {
+	window.onload = function () {
 		spinner.show();
-	});
+	};
 	model.getAllDishes("all")
 			.then(dishes => {
 

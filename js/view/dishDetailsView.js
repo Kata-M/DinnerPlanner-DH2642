@@ -6,15 +6,16 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 	var loadDishDetails = (id) => {
 
 		var numGuests = model.getNumberOfGuests();
+		var spinner = dishDetailsContainer.find("#dishDetailsLoading");
 
 		this.id = id ;
 		ID = id;
-		$(window).load(function() {
-			$("#dishDetailsLoading").show();
-		});
+		window.onload = function () {
+			spinner.show();
+		};
 		var eachDish = model.getDish(id)
 		.then(dish => {
-			$("#dishDetailsLoading").hide();
+			spinner.hide();
 
 			console.log(dish);
 			var dishInstructions = dish.instructions;
@@ -35,31 +36,31 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 
 			var fetchIngredients = dishDetailsContainer.find("#fetchIngredients");
 			fetchIngredients.empty();
-			fetchIngredients.append($("<table id='ingredientTable' class='table table-sm'></table>"));
+			fetchIngredients.append('<table id="ingredientTable" class="table table-sm"></table>');
 
 			var ingredientTable = fetchIngredients.find("#ingredientTable");
 			
-			ingredientTable.append($("<tr id='totalGuests'></tr>"));
+			ingredientTable.append('<tr id="totalGuests"></tr>');
 			var totalGuestRow = ingredientTable.find("#totalGuests");
-			totalGuestRow.append($("<td style=' font-weight: bold '> INGREDIENTS FOR "+numGuests+"</td>"));
+			totalGuestRow.append('<td style=" font-weight: bold "> INGREDIENTS FOR '+numGuests+'</td>');
 
 			var i = 0;	
 			var totalPrice = 0;
 			ingredients.forEach(function(ingredient)
 			{
-				ingredientTable.append($("<tr id='"+i+"'></tr>"));
+				ingredientTable.append('<tr id="'+i+'"></tr>');
 				var row = ingredientTable.find("#"+i);
 
-				row.append($("<td>"+ingredient.measures.metric.amount+ingredient.measures.metric.unitShort+ "</td>"));
-				row.append($("<td>"+ingredient.originalName+"</td>"));
-				row.append($("<td>"+1*numGuests+"</td>"));
-				row.append($("<td>SEK</td>"));
+				row.append('<td>'+ingredient.measures.metric.amount+ingredient.measures.metric.unitShort+ '</td>');
+				row.append('<td>'+ingredient.originalName+'</td>');
+				row.append('<td>'+1*numGuests+'</td>');
+				row.append('<td>SEK</td>');
 				totalPrice += numGuests;
 				i++;							
 			});	
-			ingredientTable.append($("<tr id='totalPrice'></tr>"));
+			ingredientTable.append('<tr id="totalPrice"></tr>');
 			var totalPriceRow = ingredientTable.find("#totalPrice");
-			totalPriceRow.append($("<td style=' font-weight: bold '> Total Price "+totalPrice+"</td>"));
+			totalPriceRow.append('<td style=" font-weight: bold "> Total Price '+totalPrice+'</td>');
 			
 
 		}).catch( error => {
