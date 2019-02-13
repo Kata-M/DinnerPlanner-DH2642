@@ -10,9 +10,9 @@ var DishDetailsView = function (dishDetailsContainer, model, id) {
 
 		this.id = id ;
 		ID = id;
-		window.onload = function () {
-			spinner.show();
-		};
+		
+		spinner.show();
+
 		var eachDish = model.getDish(id)
 		.then(dish => {
 			spinner.hide();

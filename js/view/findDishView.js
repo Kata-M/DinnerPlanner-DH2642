@@ -20,9 +20,8 @@ var FindDishView = function(findDishContainer,model){
 
 	//first time load "all" filter type and all dishes
 
-	window.onload = function () {
-		spinner.show();
-	};
+	spinner.show();
+
 	model.getAllDishes("all")
 			.then(dishes => {
 
@@ -54,8 +53,8 @@ var FindDishView = function(findDishContainer,model){
 	this.showThumbnails = function(){
 		filtered.empty();
 
-		var type = document.getElementById("selectType").value;
-		var searchKeyword = document.getElementById("searchInput").value;
+		var type = findDishContainer.find("#selectType").val();
+		var searchKeyword = findDishContainer.find("#searchInput").val();
 		 
 		model.getAllDishes(type,searchKeyword)
 		.then(dishes => {
